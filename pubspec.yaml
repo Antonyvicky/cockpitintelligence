@@ -44,6 +44,8 @@ dependencies:
   pinput: ^4.0.0
   telephony: ^0.2.0
   cloud_firestore: ^4.15.9
+  firebase_analytics: ^10.8.10
+  csv: ^6.0.0
 
 dev_dependencies:
   flutter_test:

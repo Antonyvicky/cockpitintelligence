@@ -22,6 +22,38 @@ class _NavigateState extends State<Navigate> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(50),
+        child: ClipRRect(
+          borderRadius:
+              const BorderRadius.vertical(bottom: Radius.circular(05)),
+          child: Container(
+            width: double.infinity,
+            color: Colors.blue,
+            child: AppBar(
+              leading: Container(
+                padding: const EdgeInsets.only(
+                    left: 10, top: 10), // Adjust the padding
+              ),
+              title: Container(
+                padding:
+                    const EdgeInsets.only(top: 10), // Adjust the top padding
+                child: const Text(
+                  'DASHBOARD',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 25.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              centerTitle: true,
+              backgroundColor: Colors.transparent,
+              elevation: 10,
+            ),
+          ),
+        ),
+      ),
       body: Center(
         child: TextButton(
           onPressed: () async {
