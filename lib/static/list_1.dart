@@ -1,3 +1,7 @@
+import 'package:cockpitintelligence/static/locationofaccident.dart';
+import 'package:cockpitintelligence/static/pedestrian.dart';
+import 'package:cockpitintelligence/static/road_type.dart';
+import 'package:cockpitintelligence/static/victim.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -26,13 +30,13 @@ class _MyHomePageState extends State<MyHomePage_1> {
               children: [
                 const SizedBox(height: 50),
                 ListTile(
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-                  title: Text('Hello Ahad!',
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+                  title: Text('STATE DATA ANALYTICS!',
                       style: Theme.of(context)
                           .textTheme
                           .headlineSmall
                           ?.copyWith(color: Colors.white)),
-                  subtitle: Text('Good Morning',
+                  subtitle: Text('YOU CAN REALIZE',
                       style: Theme.of(context)
                           .textTheme
                           .titleMedium
@@ -61,22 +65,71 @@ class _MyHomePageState extends State<MyHomePage_1> {
                 crossAxisSpacing: 40,
                 mainAxisSpacing: 30,
                 children: [
-                  itemDashboard('Videos', CupertinoIcons.play_rectangle,
-                      Colors.deepOrange),
-                  itemDashboard(
-                      'Analytics', CupertinoIcons.graph_circle, Colors.green),
-                  itemDashboard(
-                      'Audience', CupertinoIcons.person_2, Colors.purple),
-                  itemDashboard(
-                      'Comments', CupertinoIcons.chat_bubble_2, Colors.brown),
-                  itemDashboard('Revenue', CupertinoIcons.money_dollar_circle,
-                      Colors.indigo),
-                  itemDashboard(
-                      'Upload', CupertinoIcons.add_circled, Colors.teal),
-                  itemDashboard(
-                      'About', CupertinoIcons.question_circle, Colors.blue),
-                  itemDashboard(
-                      'Contact', CupertinoIcons.phone, Colors.pinkAccent),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                            builder: (context) => const locationaccident()),
+                      );
+                    },
+                    child: itemDashboard('LOCATION',
+                        CupertinoIcons.play_rectangle, Colors.deepOrange),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                            builder: (context) => const victim()),
+                      );
+                    },
+                    child: itemDashboard('VICTIM ANALYSIS',
+                        CupertinoIcons.graph_circle, Colors.green),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                            builder: (context) => const pedestrian()),
+                      );
+                    },
+                    child: itemDashboard(
+                        'PEDESTRAINS', CupertinoIcons.person_2, Colors.purple),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(builder: (context) => const road()),
+                      );
+                    },
+                    child: itemDashboard('ROAD Type',
+                        CupertinoIcons.chat_bubble_2, Colors.brown),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                            builder: (context) => const locationaccident()),
+                      );
+                    },
+                    child: itemDashboard('WEATHER',
+                        CupertinoIcons.money_dollar_circle, Colors.indigo),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                            builder: (context) => const locationaccident()),
+                      );
+                    },
+                    child: itemDashboard(
+                        'CAUSE', CupertinoIcons.add_circled, Colors.teal),
+                  ),
                 ],
               ),
             ),

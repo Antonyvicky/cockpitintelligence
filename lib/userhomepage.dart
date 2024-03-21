@@ -29,7 +29,7 @@ class _UserHomepageState extends State<UserHomepage>
   }
 
   final List<Widget> _pages = [
-    const MyWidget(),
+    MyWidget(),
     const Navigate(),
     const MyApp_5(),
     const HomePage(),
