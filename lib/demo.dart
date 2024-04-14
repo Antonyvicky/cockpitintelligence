@@ -55,35 +55,40 @@ class _NavigateState extends State<Navigate> {
         ),
       ),
       body: Center(
-        child: TextButton(
-          onPressed: () async {
-            // Set orientation to landscape
-            SystemChrome.setPreferredOrientations([
-              DeviceOrientation.landscapeLeft,
-              DeviceOrientation.landscapeRight,
-            ]);
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            ElevatedButton(
+              onPressed: () async {
+                // Set orientation to landscape
+                SystemChrome.setPreferredOrientations([
+                  DeviceOrientation.landscapeLeft,
+                  DeviceOrientation.landscapeRight,
+                ]);
 
-            // Navigate to Dashboard
-            await Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const Dashboard(),
+                // Navigate to Dashboard
+                await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Dashboard(),
+                  ),
+                );
+
+                // Set orientation back to portrait when returning
+                SystemChrome.setPreferredOrientations([
+                  DeviceOrientation.portraitUp,
+                  DeviceOrientation.portraitDown,
+                ]);
+              },
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
               ),
-            );
-
-            // Set orientation back to portrait when returning
-            SystemChrome.setPreferredOrientations([
-              DeviceOrientation.portraitUp,
-              DeviceOrientation.portraitDown,
-            ]);
-          },
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
-          ),
-          child: const Text(
-            'Click me',
-            style: TextStyle(color: Colors.white),
-          ),
+              child: const Text(
+                'Start Monitoring',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ],
         ),
       ),
     );

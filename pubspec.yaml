@@ -101,6 +101,7 @@ flutter:
     - assets/real_timedata.png
     - assets/interactivemap.png
     - assets/matlib_graph.png
+    - assets/profile.png
     - new file/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
