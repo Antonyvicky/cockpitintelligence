@@ -37,7 +37,7 @@ class MyDashboard extends StatefulWidget {
 
 class _MyDashboardState extends State<MyDashboard> {
   final DatabaseReference _nitroReference =
-      FirebaseDatabase.instance.reference().child('rpi_sonsors').child('brake');
+      FirebaseDatabase.instance.reference().child('values').child('brake');
   final DatabaseReference _accReference = FirebaseDatabase.instance
       .reference()
       .child('values')

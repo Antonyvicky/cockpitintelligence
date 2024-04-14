@@ -104,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       );
                     },
                     child: itemDashboard(
-                      'SAFETY',
+                      'eye distraction',
                       CupertinoIcons.eyedropper,
                       Colors.redAccent,
                     ),
@@ -117,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             builder: (context) => const alcoholtest()),
                       );
                     },
-                    child: itemDashboard('affected',
+                    child: itemDashboard('ALCOHOL',
                         CupertinoIcons.text_badge_star, Colors.brown),
                   ),
                   GestureDetector(

@@ -1,6 +1,6 @@
+import 'package:cockpitintelligence/ui/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:cockpitintelligence/ui/controllers/auth_service.dart';
-import 'package:cockpitintelligence/ui/pages/login_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

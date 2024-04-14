@@ -1,10 +1,9 @@
-// ignore_for_file: camel_case_types
-
 import 'package:flutter/material.dart';
 import 'package:flutter_super_html_viewer/flutter_super_html_viewer.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 void main() {
-  runApp(const victim());
+  runApp(const Victim());
 }
 
 const _htmlContent = '''<html>
@@ -16,8 +15,8 @@ const _htmlContent = '''<html>
 </html>
 ''';
 
-class victim extends StatelessWidget {
-  const victim({Key? key}) : super(key: key);
+class Victim extends StatelessWidget {
+  const Victim({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,21 +44,92 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              HtmlContentViewer(
-                htmlContent: _htmlContent,
-                initialContentHeight: MediaQuery.of(context).size.height,
-                initialContentWidth: MediaQuery.of(context).size.width,
-              )
-            ],
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(50),
+        child: ClipRRect(
+          borderRadius:
+              const BorderRadius.vertical(bottom: Radius.circular(05)),
+          child: Container(
+            width: double.infinity,
+            color: Colors.blue,
+            child: AppBar(
+              leading: Container(
+                padding: const EdgeInsets.only(left: 10), // Adjust the padding
+              ),
+              title: Container(
+                padding:
+                    const EdgeInsets.only(top: 10), // Adjust the top padding
+                child: const Text(
+                  'VICTIM ANALYSIS',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              centerTitle: true,
+              backgroundColor: Colors.transparent,
+              elevation: 10,
+            ),
           ),
-        ));
+        ),
+      ),
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 30.0),
+            SizedBox(
+              height: 500,
+              child: SfCartesianChart(
+                title: const ChartTitle(
+                    text: 'AGE WISE COUNT ',
+                    textStyle: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.blue)),
+                legend: const Legend(isVisible: true),
+                series: <BarSeries<SalesData, String>>[
+                  BarSeries<SalesData, String>(
+                    name: 'age-category',
+                    dataSource: getChartData(),
+                    xValueMapper: (SalesData sales, _) => sales.month,
+                    yValueMapper: (SalesData sales, _) => sales.victims,
+                    dataLabelSettings: const DataLabelSettings(isVisible: true),
+                  ),
+                ],
+                primaryXAxis: const CategoryAxis(),
+                primaryYAxis: const NumericAxis(
+                  title: AxisTitle(text: 'COUNT OF AFFECTED'),
+                ),
+              ),
+            ),
+            const SizedBox(height: 30.0),
+            HtmlContentViewer(
+              htmlContent: _htmlContent,
+              initialContentHeight: MediaQuery.of(context).size.height,
+              initialContentWidth: MediaQuery.of(context).size.width,
+            )
+          ],
+        ),
+      ),
+    );
   }
+
+  List<SalesData> getChartData() {
+    return <SalesData>[
+      SalesData('19-25', 421513),
+      SalesData('26-30', 386513),
+      SalesData('31-35', 327993),
+      SalesData('35-40', 291870),
+      SalesData('41-45', 172840),
+      SalesData('46-60', 211403),
+    ];
+  }
+}
+
+class SalesData {
+  SalesData(this.month, this.victims);
+  final String month;
+  final int victims;
 }

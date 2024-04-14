@@ -86,7 +86,7 @@ class _LoginPageState extends State<LoginPage>
         .set({
           'name': _nameController.text,
           'email': _emailController.text,
-          'Vehicle Number': vehicleNumber,
+          'PoliceRegisterNumber': vehicleNumber,
           'phone': _phoneController.text,
         })
         .then((value) => print("User details added to Firestore"))

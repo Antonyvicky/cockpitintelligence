@@ -2,6 +2,7 @@ import 'package:cockpitintelligence/static/locationofaccident.dart';
 import 'package:cockpitintelligence/static/pedestrian.dart';
 import 'package:cockpitintelligence/static/road_type.dart';
 import 'package:cockpitintelligence/static/victim.dart';
+import 'package:cockpitintelligence/static/weather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -70,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage_1> {
                       Navigator.push(
                         context,
                         CupertinoPageRoute(
-                            builder: (context) => const locationaccident()),
+                            builder: (context) => const LocationAccident()),
                       );
                     },
                     child: itemDashboard('LOCATION',
@@ -81,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage_1> {
                       Navigator.push(
                         context,
                         CupertinoPageRoute(
-                            builder: (context) => const victim()),
+                            builder: (context) => const Victim()),
                       );
                     },
                     child: itemDashboard('VICTIM ANALYSIS',
@@ -92,17 +93,17 @@ class _MyHomePageState extends State<MyHomePage_1> {
                       Navigator.push(
                         context,
                         CupertinoPageRoute(
-                            builder: (context) => const pedestrian()),
+                            builder: (context) => const Pedestrian()),
                       );
                     },
                     child: itemDashboard(
-                        'PEDESTRAINS', CupertinoIcons.person_2, Colors.purple),
+                        'time period', CupertinoIcons.person_2, Colors.purple),
                   ),
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
                         context,
-                        CupertinoPageRoute(builder: (context) => const road()),
+                        CupertinoPageRoute(builder: (context) => const Road()),
                       );
                     },
                     child: itemDashboard('ROAD Type',
@@ -113,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage_1> {
                       Navigator.push(
                         context,
                         CupertinoPageRoute(
-                            builder: (context) => const locationaccident()),
+                            builder: (context) => const Weather()),
                       );
                     },
                     child: itemDashboard('WEATHER',
@@ -124,7 +125,7 @@ class _MyHomePageState extends State<MyHomePage_1> {
                       Navigator.push(
                         context,
                         CupertinoPageRoute(
-                            builder: (context) => const locationaccident()),
+                            builder: (context) => const LocationAccident()),
                       );
                     },
                     child: itemDashboard(

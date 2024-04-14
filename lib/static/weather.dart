@@ -1,11 +1,9 @@
-// ignore_for_file: camel_case_types
-
 import 'package:flutter/material.dart';
 import 'package:flutter_super_html_viewer/flutter_super_html_viewer.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 void main() {
-  runApp(const Pedestrian());
+  runApp(const Weather());
 }
 
 const _htmlContent = '''<html>
@@ -17,18 +15,18 @@ const _htmlContent = '''<html>
 </html>
 ''';
 
-class Pedestrian extends StatelessWidget {
-  const Pedestrian({Key? key}) : super(key: key);
+class Weather extends StatelessWidget {
+  const Weather({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'PERIOD',
+      title: 'WEATHER ANALYSIS',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'MONTH WISE ANALYTICS'),
+      home: const MyHomePage(title: 'WEATHER ANALYSIS'),
     );
   }
 }
@@ -43,14 +41,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late List<SalesData> _chartData;
-
-  @override
-  void initState() {
-    _chartData = getChartData();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,10 +60,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding:
                     const EdgeInsets.only(top: 10), // Adjust the top padding
                 child: const Text(
-                  'MONTH WISE ANALYSIS',
+                  'WEATHER ANALYSIS',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 25.0,
+                    fontSize: 20.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -90,87 +80,56 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 30.0),
+            const SizedBox(height: 20.0),
             SizedBox(
               height: 500,
               child: SfCartesianChart(
                 title: const ChartTitle(
-                    text: 'FIRST 6 MONTH ACCIDENT COUNT',
+                    text: 'WEATHER WISE COUNT',
                     textStyle: TextStyle(
                         fontWeight: FontWeight.bold, color: Colors.blue)),
                 legend: const Legend(isVisible: true),
-                series: <CartesianSeries>[
+                series: <BarSeries<SalesData, String>>[
                   BarSeries<SalesData, String>(
-                    name: 'MONTH',
-                    dataSource: _chartData.sublist(0, 6), // First six months
-                    xValueMapper: (SalesData sales, _) => sales.year,
-                    yValueMapper: (SalesData sales, _) => sales.sales,
+                    name: 'weather',
+                    dataSource: getWeatherWiseData(),
+                    xValueMapper: (SalesData sales, _) => sales.month,
+                    yValueMapper: (SalesData sales, _) => sales.victims,
                     dataLabelSettings: const DataLabelSettings(isVisible: true),
                   ),
                 ],
                 primaryXAxis: const CategoryAxis(),
                 primaryYAxis: const NumericAxis(
-                  title: AxisTitle(text: 'NUMBER OF ACCIDENT'),
+                  title: AxisTitle(text: 'Weather'),
                 ),
               ),
             ),
             const SizedBox(height: 30.0),
-            SizedBox(
-              height: 500,
-              child: SfCartesianChart(
-                title: const ChartTitle(
-                    text: 'LAST 6 MONTH ACCIDENT COUNT',
-                    textStyle: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.blue)),
-                legend: const Legend(isVisible: true),
-                series: <CartesianSeries>[
-                  BarSeries<SalesData, String>(
-                    name: 'MONTH',
-                    dataSource: _chartData.sublist(6), // Last six months
-                    xValueMapper: (SalesData sales, _) => sales.year,
-                    yValueMapper: (SalesData sales, _) => sales.sales,
-                    dataLabelSettings: const DataLabelSettings(isVisible: true),
-                  ),
-                ],
-                primaryXAxis: const CategoryAxis(),
-                primaryYAxis: const NumericAxis(
-                  title: AxisTitle(text: 'NUMBER OF ACCIDENT'),
-                ),
-              ),
-            ),
-            const SizedBox(height: 70),
             HtmlContentViewer(
               htmlContent: _htmlContent,
               initialContentHeight: MediaQuery.of(context).size.height,
               initialContentWidth: MediaQuery.of(context).size.width,
-            ),
+            )
           ],
         ),
       ),
     );
   }
 
-  List<SalesData> getChartData() {
-    final List<SalesData> chartData = [
-      SalesData('JANUARY', 170150),
-      SalesData('FEBRUARY', 174964),
-      SalesData('MARCH', 194146),
-      SalesData('APRIL', 193811),
-      SalesData('MAY', 171751),
-      SalesData('JUNE', 172234),
-      SalesData('JULY', 172000),
-      SalesData('AUGUST', 165071),
-      SalesData('SEPTEMBER', 156890),
-      SalesData('OCTOBER', 161541),
-      SalesData('NOVEMBER', 157073),
-      SalesData('DECEMBER', 141747),
+  List<SalesData> getWeatherWiseData() {
+    return <SalesData>[
+      SalesData('Sunny/hot', 2832),
+      SalesData('Rainy/cold', 3958),
+      SalesData('Cloudy', 7699),
+      SalesData('fog/mist', 1259),
+      SalesData('fine weather', 97032),
+      SalesData('clear condition', 129320),
     ];
-    return chartData;
   }
 }
 
 class SalesData {
-  SalesData(this.year, this.sales);
-  final String year;
-  final int sales;
+  SalesData(this.month, this.victims);
+  final String month;
+  final int victims;
 }
